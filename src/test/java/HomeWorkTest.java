@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class HomeWorkTest {
     @Test
-    public void SauceDemo() {
+    public void sauceDemo() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
@@ -18,19 +18,19 @@ public class HomeWorkTest {
         driver.findElement(By.className("submit-button")).click();
 
         driver.findElement(By.id("item_3_title_link"));
-        //driver.findElement(By.linkText("https://twitter.com/saucelabs"));
-        //driver.findElement(By.partialLinkText("twitter"));
         driver.findElement(By.xpath("//a[text()='About']"));
         driver.findElement(By.xpath("//a[contains(@data-test,'reset')]"));
         driver.findElement(By.xpath("//a[contains(text(),'App')]"));
         driver.findElement(By.xpath("//*[text()='About']//ancestor::div"));
 
         driver.findElement(By.cssSelector("[class=bm-menu]"));
+        driver.findElement(By.cssSelector(".bm-item.menu-item"));
+        driver.findElement(By.cssSelector(".bm-menu .bm-item-list"));
+        driver.findElement(By.cssSelector("#inventory_sidebar_link"));
+        driver.findElement(By.cssSelector("nav"));
+        driver.findElement(By.cssSelector("div.header_container"));
         driver.findElement(By.cssSelector("[value=az]"));
 
-
         driver.quit();
-
-
     }
 }

@@ -1,0 +1,22 @@
+package tests;
+
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertTrue;
+
+public class ProductsTest extends BaseTest {
+
+    private String goodsName = "Sauce Labs Bike Light";
+
+    @Test
+    public void buyProduct() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.isOpened();
+        productsPage.addToCart("Sauce Labs Backpack");
+        productsPage.addToCart(goodsName);
+        productsPage.addToCart(5);
+        productsPage.openCart();
+        assertTrue(cartPage.getProductsNames().contains(goodsName));
+    }
+}

@@ -17,6 +17,6 @@ public class CartTest extends BaseTest{
         productsPage.addToCart(5);
         productsPage.openCart();
         cartPage.isOpened();
-        assertEquals(cartPage.countOfGoodsInCard(), 3);
+        assertEquals(cartPage.countOfGoodsInCart(), 3);
     }
 }

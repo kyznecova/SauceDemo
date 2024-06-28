@@ -16,7 +16,7 @@ public class CartPage extends BasePage{
     private final By CART_ITEM = By.cssSelector("[class=cart_item_label]");
     private final By ITEM_NAME = By.cssSelector(".inventory_item_name");
 
-  public int countOfGoodsInCard() {
+  public int countOfGoodsInCart() {
         List<WebElement> goodsList = driver.findElements(CART_ITEM);
         return goodsList.size();
     }

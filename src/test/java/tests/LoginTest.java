@@ -1,40 +1,32 @@
 package tests;
 
-import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     @Test
     public void correctLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        assertEquals(driver.findElement(By.cssSelector("[class=title]")).getText(), "Products");
+        assertEquals(productsPage.getTitle(), "Products");
     }
 
-    @Test
-    public void blockedUserLogin() {
-        loginPage.open();
-        loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(driver.findElement(By.cssSelector("[data-test=error]")).getText(),
-                "Epic sadface: Sorry, this user has been locked out.");
+    @DataProvider
+    public Object[][] loginData() {
+        return new Object[][] {
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+                {"standard_user", "", "Epic sadface: Password is required"},
+                {"0000", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"}
+        };
     }
 
-    @Test
-    public void incorrectPassword() {
+    @Test(dataProvider = "loginData")
+    public void blockedUserLogin(String user, String password, String expectedError) {
         loginPage.open();
-        loginPage.login("standard_user", "0000");
-        assertEquals(driver.findElement(By.cssSelector("[data-test=error]")).getText(),
-                "Epic sadface: Username and password do not match any user in this service");
-    }
-
-    @Test
-    public void incorrectLogin() {
-        loginPage.open();
-        loginPage.login("0000", "secret_sauce");
-        assertEquals(driver.findElement(By.cssSelector("[data-test=error]")).getText(),
-                "Epic sadface: Username and password do not match any user in this service");
+        loginPage.login(user, password);
+        assertEquals(loginPage.getTextError(), expectedError);
     }
 }

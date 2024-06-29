@@ -25,7 +25,7 @@ public class BaseTest {
     String password;
 
     @Parameters({"browser"})
-    @BeforeMethod
+    @BeforeMethod(description = "Открытие браузера")
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();

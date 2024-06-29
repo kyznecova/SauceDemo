@@ -1,9 +1,11 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public abstract class BasePage {
@@ -20,6 +22,7 @@ public abstract class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
+    @Step("Проверяем, что страница открылась")
     public void isOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(TITLE)));
     }

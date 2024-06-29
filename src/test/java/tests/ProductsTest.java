@@ -8,10 +8,10 @@ public class ProductsTest extends BaseTest {
 
     private String goodsName = "Sauce Labs Bike Light";
 
-    @Test
+    @Test(description = "Проверка верного добавления товаров в корзину")
     public void buyProduct() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.isOpened();
         productsPage.addToCart("Sauce Labs Backpack");
         productsPage.addToCart(goodsName);

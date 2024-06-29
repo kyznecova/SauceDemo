@@ -7,10 +7,10 @@ public class CartTest extends BaseTest{
 
     private String goodsName = "Sauce Labs Bike Light";
 
-    @Test
+    @Test(description = "Проверка количества добавленных товаров в корзину")
     public void goodsAdded() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.isOpened();
         productsPage.addToCart("Sauce Labs Backpack");
         productsPage.addToCart(goodsName);
